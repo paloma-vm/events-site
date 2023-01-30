@@ -1,11 +1,9 @@
+"""Create database models to represent tables."""
 from events_app import db
 from sqlalchemy import Table, Column, Integer, ForeignKey
-from sqlalchemy.orm import relationship
-import enum
+from sqlalchemy.orm import backref, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
-
-db.Model = declarative_base()
 
 # TODO: Create a model called `Guest` with the following fields:
 # - id: primary key
@@ -61,7 +59,7 @@ class Event(db.Model):
 
 # guest_event_table = None
 
-event_guest_table = Table('event_guest', db.Model.metadata,
+event_guest_table = Table('event_guest', 
     Column('event_id', db.Integer, ForeignKey('event.id')),
     Column('guest_id', db.Integer, ForeignKey('guest.id'))
 )
