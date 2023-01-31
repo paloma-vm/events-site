@@ -19,6 +19,8 @@ def index():
     """Show upcoming events to users!"""
 
     # TODO: Get all events and send to the template
+    # events_data = db.events.query.all()
+    events_data = Event.query.all()
     
     return render_template('index.html')
 
@@ -29,18 +31,18 @@ def create():
     if request.method == 'POST':
         new_event_title = request.form.get('title')
         new_event_description = request.form.get('description')
-        date = request.form.get('date')
-        time = request.form.get('time')
+        event_date = request.form.get('date')
+        event_time = request.form.get('time')
 
         try:
             date_and_time = datetime.strptime(
-                f'{date} {time}',
+                f'{event_date} {event_time}',
                 '%Y-%m-%d %H:%M')
         except ValueError:
-            return render_template('create.html', 
+            return render_template('create.html',
                 error='Incorrect datetime format! Please try again.')
 
-        # TODO: Create a new event with the given title, description, & 
+        # TODO: Create a new event with the given title, description, &
         # datetime, then add and commit to the database
         new_event = Event(new_event_title, new_event_description, date_and_time)
         db.session.add(new_event)
@@ -57,6 +59,7 @@ def event_detail(event_id):
     """Show a single event."""
 
     # TODO: Get the event with the given id and send to the template
+    event_info = Event.query.get(event_id)
     
     return render_template('event_detail.html')
 

@@ -4,8 +4,8 @@ from sqlalchemy.orm import relationship
 import enum
 from sqlalchemy.ext.declarative import declarative_base
 
-
-db.Model = declarative_base()
+# db = SQLAlchemy(app)
+# db.Model = declarative_base()
 
 # TODO: Create a model called `Guest` with the following fields:
 # - id: primary key
@@ -43,7 +43,7 @@ class Event(db.Model):
     title = db.Column(db.String(80))
     description = db.Column(db.String(300))
     date_and_time = db.Column(db.DateTime)
-    guests = db.relationship("Guest", secondary='event_guest', back_populates="events")
+    guests = db.relationship("Guest", secondary='event_guest', back_populates="events_attending")
 
     def __str__(self):
         return f'<Event: {self.title}>'

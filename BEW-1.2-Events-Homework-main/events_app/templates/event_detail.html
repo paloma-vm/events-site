@@ -7,7 +7,21 @@
 <!-- 
     TODO: Instead of the hard-coded values, use the event object to display the
     correct title, description, date, time, and number of guests
+
+     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80))
+    description = db.Column(db.String(300))
+    date_and_time = db.Column(db.DateTime)
+    guests = db.relationship("Guest", secondary='event_guest', back_populates="events")
 -->
+<h1>{{self.title}}</h1>
+
+<p>{{self.description}}</p>
+
+<p><strong>Date:</strong> ((Friday March 5, 2021))</p>
+<p><strong>Time:</strong> 5:00 PM</p>
+
+<p><strong>Number of Guests:</strong>{{self.guests}}</p>
 
 <h1>Zoom Party!</h1>
 
