@@ -2,8 +2,8 @@
 
 {% block content %}
 <h1>New Event</h1>
-
-<form method="POST">
+<!-- need to add action -->
+<form method="POST" action="{{ url_for('main.create') }}">
     <p>
         <label>
             Event Title:

@@ -14,14 +14,14 @@
     date_and_time = db.Column(db.DateTime)
     guests = db.relationship("Guest", secondary='event_guest', back_populates="events")
 -->
-<h1>{{self.title}}</h1>
+<h1>{{event_info.title}}</h1>
 
-<p>{{self.description}}</p>
+<p>{{event_info.description}}</p>
 
-<p><strong>Date:</strong> ((Friday March 5, 2021))</p>
-<p><strong>Time:</strong> 5:00 PM</p>
+<p><strong>Date:</strong>{{event_info.event_date}}</p>
+<p><strong>Time:</strong> {{event_info.event_time}}/p>
 
-<p><strong>Number of Guests:</strong>{{self.guests}}</p>
+<p><strong>Number of Guests:</strong>{{event_info.guests}}</p>
 
 <h1>Zoom Party!</h1>
 
@@ -32,7 +32,7 @@
 
 <p><strong>Number of Guests:</strong> 5</p>
 
-<form method="POST">
+<form method="POST" action="/event_detail/{{event_id}}">
     <fieldset>
         <legend>RSVP</legend>
         {% if error %}
@@ -74,11 +74,12 @@
 
 <h2>Guests Attending:</h2>
 <ul>
-    
-    <li><a href="/guest/1">Meredith</a></li>
-    <li><a href="/guest/2">Dani</a></li>
-    <li><a href="/guest/3">Jordan</a></li>
-    <li><a href="/guest/4">Ducky</a></li>
+    {% for guest in event_info.guests %}
+        <li><a href="/guest/{{guest.id}}">{{guest.name}}</a></li>
+        <!-- <li><a href="/guest/2">Dani</a></li>
+        <li><a href="/guest/3">Jordan</a></li>
+        <li><a href="/guest/4">Ducky</a></li> -->
+    {% endfor %}
 </ul>
 
 {% endblock %}

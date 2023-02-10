@@ -22,7 +22,7 @@ def index():
     # events_data = db.events.query.all()
     events_data = Event.query.all()
     
-    return render_template('index.html')
+    return render_template('index.html', events_data=events_data)
 
 
 @main.route('/create', methods=['GET', 'POST'])
@@ -44,7 +44,7 @@ def create():
 
         # TODO: Create a new event with the given title, description, &
         # datetime, then add and commit to the database
-        new_event = Event(new_event_title, new_event_description, date_and_time)
+        new_event = Event(title=new_event_title, description=new_event_description, date_and_time=date_and_time)
         db.session.add(new_event)
         db.session.commit()
 
@@ -61,7 +61,7 @@ def event_detail(event_id):
     # TODO: Get the event with the given id and send to the template
     event_info = Event.query.get(event_id)
     
-    return render_template('event_detail.html')
+    return render_template('event_detail.html', event_info=event_info)
 
 
 @main.route('/event/<event_id>', methods=['POST'])

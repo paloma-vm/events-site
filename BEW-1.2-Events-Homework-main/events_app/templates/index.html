@@ -19,10 +19,10 @@
 <p><strong>Date and Time:</strong>{{self.date_and_time}}</p>
 <p><strong>Number of Guests:</strong>{{self.guests}}</p>
 
-{% for event in all_events %}
+{% for event in events_data %}
     <div class="event-container">
         <h3><a href="/event/event_id">{{self.title}}</a></h3>
-        <p><strong>Date and Time:</strong>{{self.date_and_time}}</p>
+        <p><strong>Date and Time:</strong>{{self.date}}{{self.time}}</p>
         <p class="small-text">
             {{self.guests}}
         </p>
