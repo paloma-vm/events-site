@@ -10,14 +10,7 @@
     TODO: Use the event objects to display the correct information (and take 
     out the hardcoded values)
 -->
-<h1>{{self.title}}</h1>
-
-<p>{{self.description}}</p>
 <!-- format the date and times -->
-<!-- <p><strong>Date:</strong> ((Friday March 5, 2021))</p> 
-<p><strong>Time:</strong> 5:00 PM</p> -->
-<p><strong>Date and Time:</strong>{{self.date_and_time}}</p>
-<p><strong>Number of Guests:</strong>{{self.guests}}</p>
 
 {% for event in events_data %}
     <div class="event-container">
@@ -25,12 +18,12 @@
         <p><strong>Date and Time:</strong>{{ event.date_and_time.strftime(' %A %B %d, %Y at %H:%M %p') }}</p>
         <p><strong>Description:</strong>{{event.description}}</p>
         <p class="small-text">
-            {{ event.guests }}
+            {{ event.guests|length }} attending
         </p>
     </div>
 {% endfor %}
 
-<div class="event-container">
+<!-- <div class="event-container">
     <h3><a href="/event/1">Zoom Party!</a></h3>
     <p><strong>Date and Time:</strong> Friday March 5, 2021 at 5:00 PM</p>
     <p><strong>Description:</strong> Come join us for some fun zoom games!</p>
@@ -46,7 +39,7 @@
     <p class="small-text">
         10 attending
     </p>
-</div>
+</div> -->
 
 
 

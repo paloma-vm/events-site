@@ -21,7 +21,7 @@ def index():
     # TODO: Get all events and send to the template
     # events_data = db.events.query.all()
     events_data = Event.query.all()
-    
+
     return render_template('index.html', events_data=events_data)
 
 
@@ -80,7 +80,7 @@ def rsvp(event_id):
 
         if guest is None:
             flash('error')
-            return render_template('event_detail.html')
+            return render_template('event_detail.html', event=event)
 
         # TODO: If the guest does exist, add the event to their 
         # events_attending, then commit to the database.
