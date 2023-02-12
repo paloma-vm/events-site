@@ -8,14 +8,14 @@
     TODO: Instead of the hard-coded values, use the event object to display the
     correct title, description, date, time, and number of guests
 -->
-<h1>{{ event_info.title }}</h1>
+<h1>{{ event.title }}</h1>
 
-<p>{{ event_info.description }}</p>
+<p>{{ event.description }}</p>
 
-<p><strong>Date: </strong>{{ event_info.date_and_time.strftime(' %A %B %d, %Y') }}</p>
-<p><strong>Time:</strong> {{ event_info.date_and_time.strftime('%H:%M %p') }}</p>
+<p><strong>Date: </strong>{{ event.date_and_time.strftime(' %A %B %d, %Y') }}</p>
+<p><strong>Time:</strong> {{ event.date_and_time.strftime('%H:%M %p') }}</p>
 
-<p><strong>Number of Guests:</strong>{{ event_info.guests }}</p>
+<p><strong>Number of Guests:</strong>{{ event.guests }}</p>
 
 <h1>Zoom Party!</h1>
 
@@ -27,7 +27,7 @@
 <p><strong>Number of Guests:</strong> 5</p>
 
 <!-- <form method="POST" action="/event_detail/{{event_id}}"> -->
-<form method="POST" action="/event_detail/{{event_id}}">
+<form method="POST" action="{{ url_for('main.event_detail', event_id=event.id ) }}">
 
     <fieldset>
         <legend>RSVP</legend>
@@ -46,7 +46,7 @@
                 Returning Guest?
             </label>
         </p>
-        <div id="new-guest-info">
+        <div id="new-guest">
             <p>
                 <label>
                     Your Email Address:
@@ -70,7 +70,7 @@
 
 <h2>Guests Attending:</h2>
 <ul>
-    {% for guest in event_info.guests %}
+    {% for guest in event.guests %}
         <li><a href="/guest/{{guest.id}}">{{ guest.name }}</a></li>
         <!-- <li><a href="/guest/2">Dani</a></li>
         <li><a href="/guest/3">Jordan</a></li>

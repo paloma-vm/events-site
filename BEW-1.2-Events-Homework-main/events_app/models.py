@@ -58,7 +58,7 @@ class Event(db.Model):
 
 # guest_event_table = None
 
-event_guest_table = Table('event_guest', db.Model.metadata,
-    Column('event_id', db.Integer, ForeignKey('event.id')),
-    Column('guest_id', db.Integer, ForeignKey('guest.id'))
+event_guest_table = db.Table('event_guest',
+    db.Column('event_id', db.Integer, db.ForeignKey('event.id')),
+    db.Column('guest_id', db.Integer, db.ForeignKey('guest.id'))
 )
