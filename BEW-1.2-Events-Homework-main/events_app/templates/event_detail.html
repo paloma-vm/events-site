@@ -7,21 +7,15 @@
 <!-- 
     TODO: Instead of the hard-coded values, use the event object to display the
     correct title, description, date, time, and number of guests
-
-     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80))
-    description = db.Column(db.String(300))
-    date_and_time = db.Column(db.DateTime)
-    guests = db.relationship("Guest", secondary='event_guest', back_populates="events")
 -->
-<h1>{{event_info.title}}</h1>
+<h1>{{ event_info.title }}</h1>
 
-<p>{{event_info.description}}</p>
+<p>{{ event_info.description }}</p>
 
-<p><strong>Date:</strong>{{event_info.event_date}}</p>
-<p><strong>Time:</strong> {{event_info.event_time}}/p>
+<p><strong>Date: </strong>{{ event_info.date_and_time.strftime(' %A %B %d, %Y') }}</p>
+<p><strong>Time:</strong> {{ event_info.date_and_time.strftime('%H:%M %p') }}</p>
 
-<p><strong>Number of Guests:</strong>{{event_info.guests}}</p>
+<p><strong>Number of Guests:</strong>{{ event_info.guests }}</p>
 
 <h1>Zoom Party!</h1>
 
@@ -32,7 +26,9 @@
 
 <p><strong>Number of Guests:</strong> 5</p>
 
+<!-- <form method="POST" action="/event_detail/{{event_id}}"> -->
 <form method="POST" action="/event_detail/{{event_id}}">
+
     <fieldset>
         <legend>RSVP</legend>
         {% if error %}
@@ -75,7 +71,7 @@
 <h2>Guests Attending:</h2>
 <ul>
     {% for guest in event_info.guests %}
-        <li><a href="/guest/{{guest.id}}">{{guest.name}}</a></li>
+        <li><a href="/guest/{{guest.id}}">{{ guest.name }}</a></li>
         <!-- <li><a href="/guest/2">Dani</a></li>
         <li><a href="/guest/3">Jordan</a></li>
         <li><a href="/guest/4">Ducky</a></li> -->

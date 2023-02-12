@@ -46,7 +46,7 @@ class Event(db.Model):
         return f'<Event: {self.title}>'
 
     def __repr__(self):
-        return f'<Eventt: {self.title}>'
+        return f'<Event: {self.title}>'
 
 # STRETCH CHALLENGE: Add a field `event_type` as an Enum column that denotes the
 # type of event (Party, Study, Networking, etc)
